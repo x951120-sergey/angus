@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蔡杰翰 Resume</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: linear-gradient(135deg, #008000, #00a651);
+    min-height:100vh;
+}
+
+.container {
+    max-width:800px;
+    margin:60px auto;
+    padding:20px;
+}
+
+.card {
+    background: rgba(255,255,255,0.9);
+    border-radius:20px;
+    padding:30px;
+    margin-bottom:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+/* 🔥 頭像 */
+.profile-img {
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    object-fit:cover;
+    border:6px solid #4CAF50;
+    cursor:pointer;
+    transition: transform 0.8s ease;
+}
+
+/* 自轉動畫 */
+.spin {
+    transform: rotateY(360deg) scale(1.1);
+}
+
+h1 { color:#2e7d32; margin-top:10px; }
+
+.video-container {
+    position:relative;
+    padding-bottom:56.25%;
+    height:0;
+}
+
+.video-container iframe {
+    position:absolute;
+    width:100%;
+    height:100%;
+    border-radius:15px;
+}
+
+audio { display:none; }
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 音樂 -->
+<audio id="bgm" autoplay loop muted>
+    <source src="music/bgm.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+<div class="card">
+    <!-- 🔥 頭像（預設 photo.jpg） -->
+    <img src="images/photo.jpg" class="profile-img" id="avatar">
+    <h1>蔡杰翰</h1>
+    <p>學號：114054026</p>
+</div>
+
+<div class="card">
+    <h2>🎬 自介影片</h2>
+    <div class="video-container">
+        <iframe 
+        src="https://www.youtube-nocookie.com/embed/YOUR_VIDEO_ID"
+        frameborder="0"
+        allowfullscreen></iframe>
+    </div>
+</div>
+
+<div class="card">
+    <h2>🌱 個人簡介</h2>
+    <p>我是亞洲大學的學生，對學習與成長充滿熱情。</p>
+</div>
+
+</div>
+
+<script>
+// 🎵 音樂解鎖
+const bgm = document.getElementById("bgm");
+document.addEventListener("click", () => {
+    bgm.muted = false;
+    bgm.play();
+}, { once:true });
+
+// 🔥 自轉頭像切換
+const avatar = document.getElementById("avatar");
+
+let flipped = false;
+
+avatar.addEventListener("click", () => {
+
+    avatar.classList.add("spin");
+
+    setTimeout(() => {
+        flipped = !flipped;
+
+        avatar.src = flipped
+            ? "images/profile.jpg"
+            : "images/photo.jpg";
+
+    }, 400); // 半圈切換
+
+    setTimeout(() => {
+        avatar.classList.remove("spin");
+    }, 800);
+});
+</script>
+
+</body>
+</html>
